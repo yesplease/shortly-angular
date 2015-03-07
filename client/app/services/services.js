@@ -1,8 +1,21 @@
 angular.module('shortly.services', [])
-
+// .factory('Shorten', function ($http){
+//   var addLink = function(link){
+//     console.log("This is the link to post to server: ", link)
+//     return $http({
+//       method: 'POST',
+//       url: '/api/links',
+//       data: link
+//     })
+//     .catch(function(error){
+//       console.log('error yo', error);
+//     });
+//   }
+//   return {
+//     addLink: addLink
+//   };
+// })
 .factory('Links', function ($http) {
-  // Your code here
-  var ourLinks = [];
   var getLinks = function(){
     return $http({
       method: 'GET',
@@ -11,26 +24,22 @@ angular.module('shortly.services', [])
     .catch(function(error){
       console.error(error);
     });
-
-    // .then(function(resp){
-    //   ourLinks = resp;
-    //   console.log("This is the resp in factory: ", resp);
-    // })
   };
-
-  var returnLinks = function(){
-    return ourLinks;
+  var addLink = function(link){
+    console.log("This is the link to post to server: ", link);
+    return $http({
+      method: 'POST',
+      url: '/api/links',
+      data: link
+    })
+    .catch(function(error){
+      console.log('error yo', error);
+    });
   }
-  // $http.get('/api/links').
-  //   success(function(data, status, headers, config){
-  //     console.log("This is the success call from data", data);
-  //   })
-    // error(fucntion(data, status, headers, config){
-    //   console.log("error");
-    // })
+
   return {
     getLinks: getLinks,
-    returnLinks: returnLinks
+    addLink: addLink
   };
 })
 .factory('Auth', function ($http, $location, $window) {
