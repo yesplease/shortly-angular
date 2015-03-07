@@ -1,11 +1,12 @@
 angular.module('shortly.services', [])
 .factory('Shorten', function ($http){
   var addLink = function(link){
+
     console.log("This is the link to post to server: ", link)
     return $http({
       method: 'POST',
       url: '/api/links',
-      data: link
+      data: {url: link}
     })
     .catch(function(error){
       console.log('error yo', error);
