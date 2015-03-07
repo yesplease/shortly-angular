@@ -2,17 +2,25 @@ angular.module('shortly.services', [])
 
 .factory('Links', function ($http) {
   // Your code here
+  var ourLinks = [];
   var getLinks = function(){
     return $http({
       method: 'GET',
       url: '/api/links'
     })
-    .then(function(resp){
-      return resp;
-      console.log("This is the resp in factory: ", resp);
+    .catch(function(error){
+      console.error(error);
     });
 
+    // .then(function(resp){
+    //   ourLinks = resp;
+    //   console.log("This is the resp in factory: ", resp);
+    // })
   };
+
+  var returnLinks = function(){
+    return ourLinks;
+  }
   // $http.get('/api/links').
   //   success(function(data, status, headers, config){
   //     console.log("This is the success call from data", data);
@@ -21,7 +29,8 @@ angular.module('shortly.services', [])
     //   console.log("error");
     // })
   return {
-    getLinks: getLinks
+    getLinks: getLinks,
+    returnLinks: returnLinks
   };
 })
 .factory('Auth', function ($http, $location, $window) {
