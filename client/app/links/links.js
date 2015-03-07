@@ -1,21 +1,17 @@
 angular.module('shortly.links', [])
 
-.controller('LinksController', function ($scope, Links) {
+.controller('LinksController', function ($scope, $window, Links) {
   $scope.data = {};
+  $scope.dummyLink = 'dummy text';
 
   $scope.getLinks = function(){
-    Links.getLinks($scope.data)
-      .then(function (token){
-        console.log('token', token)
-      })
+    Links.getLinks()
+      .then(function(links){
+      console.log("this is inside linksJS", links);
+    })
   }
-
-
-
-
-  console.log("This is Links: ", Links, new Date);
-  // Your code here
-  $scope.link = 'http://www.google.com';
+$scope.getLinks();
 });
 
-  $scope.getLinks();
+
+
