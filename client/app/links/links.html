@@ -15,8 +15,9 @@
 </div>
 
 
+Search<input ng-model='searchText'>
 
-<div id="container"><div class="links"><div class="link" ng-repeat = "link in data.links">
+<div id="container"><div class="links"><div class="link" ng-repeat = "link in data.links | orderBy:'-visits' | filter:searchText">
   <img src='/assets/redirect_icon.png'>
   <div class="info">
     <div class="visits"><span class="count">{{link.visits}}</span>Visits</div>
