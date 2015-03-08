@@ -7,6 +7,7 @@ angular.module('shortly.shorten', [])
     Shorten.addLink(newLink)
       .then(function(res){
         console.log('this is the res from server', res)
+      $location.path('/links')
       })
   }
 
